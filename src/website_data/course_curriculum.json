@@ -1,0 +1,291 @@
+{
+  "website_info": {
+    "name": "SkillCapital",
+    "url": "https://www.skillcapital.ai",
+    "description": "Leading online learning platform offering comprehensive tech courses",
+    "contact": {
+      "email": "info@skillcapital.ai",
+      "phone": "+91-XXXXXXXXXX",
+      "location": "India"
+    },
+    "features": [
+      "30 hours of video content",
+      "Lifetime access",
+      "Certificate of completion",
+      "Project-based learning",
+      "24/7 support"
+    ]
+  },
+  "greeting_responses": {
+    "hello": "Hello, how can I assist you?",
+    "hi": "Hello, how can I assist you?",
+    "hey": "Hello, how can I assist you?"
+  },
+  "price_info": {
+    "all_courses_price": "₹ 999",
+    "duration": "30 Hours",
+    "message": "All courses are priced at ₹ 999 for 30 hours of comprehensive training."
+  },
+  "courses": {
+    "python": {
+      "name": "Python Programming",
+      "short_description": "Learn Python from basics to advanced concepts",
+      "modules": [
+        "Introduction to Python and Setup",
+        "Variables, Data Types, and Operators",
+        "Control Flow: If-else, Loops",
+        "Functions and Scope",
+        "Data Structures: Lists, Tuples, Sets, Dictionaries",
+        "File Handling and I/O Operations",
+        "Exception Handling and Debugging",
+        "Object-Oriented Programming (OOP)",
+        "Modules and Packages",
+        "Working with APIs and JSON",
+        "Database Connectivity",
+        "Final Project: Real-world Application"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "devops": {
+      "name": "DevOps",
+      "short_description": "Master modern DevOps practices and tools",
+      "modules": [
+        "Introduction to DevOps Culture",
+        "Version Control with Git and GitHub",
+        "Continuous Integration/Continuous Deployment (CI/CD)",
+        "Containerization with Docker",
+        "Container Orchestration with Kubernetes",
+        "Infrastructure as Code with Terraform",
+        "Configuration Management with Ansible",
+        "Monitoring and Logging (Prometheus, Grafana)",
+        "Cloud Platforms Integration (AWS/Azure)",
+        "Security in DevOps (DevSecOps)",
+        "Microservices Architecture",
+        "Final Project: End-to-End DevOps Pipeline"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "aws cloud": {
+      "name": "AWS Cloud",
+      "short_description": "Become an AWS expert with comprehensive cloud training",
+      "modules": [
+        "Introduction to Cloud Computing and AWS",
+        "AWS Fundamentals and Core Services",
+        "Compute Services: EC2, Lambda, ECS",
+        "Storage Services: S3, EBS, EFS",
+        "Database Services: RDS, DynamoDB, ElastiCache",
+        "Networking: VPC, Route53, CloudFront",
+        "Security and Identity: IAM, Cognito, KMS",
+        "Monitoring and Logging: CloudWatch, CloudTrail",
+        "Serverless Computing with AWS Lambda",
+        "DevOps on AWS: CodePipeline, CodeBuild",
+        "Cost Optimization and Management",
+        "Final Project: Multi-tier AWS Architecture"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "azure cloud": {
+      "name": "Azure Cloud",
+      "short_description": "Master Microsoft Azure cloud platform",
+      "modules": [
+        "Introduction to Microsoft Azure",
+        "Azure Fundamentals and Core Concepts",
+        "Compute Services: Virtual Machines, App Service",
+        "Storage Services: Blob Storage, File Storage",
+        "Database Services: SQL Database, Cosmos DB",
+        "Networking: Virtual Network, Load Balancer",
+        "Security and Identity: Azure AD, Key Vault",
+        "Monitoring and Management: Azure Monitor",
+        "DevOps with Azure: Azure DevOps, GitHub Actions",
+        "Serverless Computing: Azure Functions",
+        "Cost Management and Optimization",
+        "Final Project: Azure-based Solution"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "react js": {
+      "name": "React JS",
+      "short_description": "Build modern web applications with React",
+      "modules": [
+        "Introduction to React and Modern JavaScript",
+        "JSX and React Components",
+        "State and Props Management",
+        "Event Handling and User Interactions",
+        "Conditional Rendering and Lists",
+        "Forms and Controlled Components",
+        "React Hooks: useState, useEffect",
+        "Context API for State Management",
+        "Routing with React Router",
+        "Advanced Hooks and Custom Hooks",
+        "Performance Optimization and Best Practices",
+        "Final Project: Complete React Application"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "ui/ux": {
+      "name": "UI/UX Design",
+      "short_description": "Create user-centered digital experiences",
+      "modules": [
+        "Introduction to UI/UX Design Principles",
+        "User Research and Persona Development",
+        "Information Architecture and User Flows",
+        "Wireframing and Low-fidelity Prototyping",
+        "Visual Design: Color Theory, Typography",
+        "Design Systems and Component Libraries",
+        "High-fidelity Prototyping with Figma",
+        "User Testing and Usability Studies",
+        "Responsive Design and Mobile-first Approach",
+        "Accessibility and Inclusive Design",
+        "Design Handoff and Developer Collaboration",
+        "Final Project: Complete Design System"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "html & css": {
+      "name": "HTML & CSS",
+      "short_description": "Master web development fundamentals",
+      "modules": [
+        "Introduction to Web Development",
+        "HTML Structure and Semantic Elements",
+        "CSS Fundamentals and Selectors",
+        "Box Model and Layout Fundamentals",
+        "Flexbox Layout System",
+        "CSS Grid Layout",
+        "Responsive Design and Media Queries",
+        "CSS Animations and Transitions",
+        "CSS Preprocessors: SASS/SCSS",
+        "CSS Frameworks: Bootstrap, Tailwind",
+        "Performance Optimization and Best Practices",
+        "Final Project: Responsive Website"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "terraform": {
+      "name": "Terraform",
+      "short_description": "Learn Infrastructure as Code with Terraform",
+      "modules": [
+        "Introduction to Infrastructure as Code",
+        "Terraform Basics and Installation",
+        "Providers and Resource Management",
+        "Variables, Outputs, and Data Sources",
+        "State Management and Remote State",
+        "Modules and Reusability",
+        "Workspaces and Environment Management",
+        "Advanced Terraform Features",
+        "Best Practices and Security",
+        "Terraform Cloud and Enterprise",
+        "Integration with CI/CD Pipelines",
+        "Final Project: Multi-environment Infrastructure"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "kubernetes": {
+      "name": "Kubernetes",
+      "short_description": "Master container orchestration with Kubernetes",
+      "modules": [
+        "Introduction to Container Orchestration",
+        "Kubernetes Architecture and Components",
+        "Pods, Containers, and Basic Operations",
+        "Services and Networking",
+        "ConfigMaps and Secrets Management",
+        "Deployments and ReplicaSets",
+        "Volumes and Storage Management",
+        "Ingress Controllers and Load Balancing",
+        "Monitoring and Logging in Kubernetes",
+        "Security and RBAC",
+        "Advanced Kubernetes Features",
+        "Final Project: Production-ready K8s Cluster"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "site reliability engineer (sre)": {
+      "name": "Site Reliability Engineer (SRE)",
+      "short_description": "Learn SRE principles and practices",
+      "modules": [
+        "Introduction to SRE and Reliability Engineering",
+        "Service Level Objectives (SLOs) and SLIs",
+        "Error Budgets and Reliability Metrics",
+        "Monitoring and Alerting Strategies",
+        "Incident Response and Management",
+        "Postmortems and Blameless Culture",
+        "Automation and Infrastructure as Code",
+        "Capacity Planning and Performance Optimization",
+        "Security in SRE (DevSecOps)",
+        "Chaos Engineering and Resilience Testing",
+        "SRE Tools and Technologies",
+        "Final Project: SRE Implementation Strategy"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "oops with python": {
+      "name": "OOPs with Python",
+      "short_description": "Master Object-Oriented Programming in Python",
+      "modules": [
+        "Introduction to Object-Oriented Programming",
+        "Classes and Objects in Python",
+        "Inheritance and Polymorphism",
+        "Encapsulation and Abstraction",
+        "Advanced OOP Concepts",
+        "Design Patterns in Python",
+        "SOLID Principles and Best Practices",
+        "Object-Oriented Design",
+        "Testing and Debugging OOP Code",
+        "Performance Optimization in OOP",
+        "Real-world OOP Applications",
+        "Final Project: OOP-based Application"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "fundamentals of tech": {
+      "name": "Fundamentals of Tech",
+      "short_description": "Build strong technology foundation",
+      "modules": [
+        "Introduction to Technology and Computing",
+        "Computer Science Fundamentals",
+        "Programming Basics and Logic",
+        "Data Structures and Algorithms",
+        "Database Fundamentals",
+        "Networking and Internet Basics",
+        "Operating Systems and System Architecture",
+        "Software Development Lifecycle",
+        "Version Control and Collaboration",
+        "Cloud Computing Basics",
+        "Cybersecurity Fundamentals",
+        "Final Project: Technology Portfolio"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    },
+    "javascript": {
+      "name": "JavaScript",
+      "short_description": "Master JavaScript programming language",
+      "modules": [
+        "Introduction to JavaScript and ES6+",
+        "Variables, Data Types, and Operators",
+        "Functions and Scope Management",
+        "Objects, Arrays, and Data Structures",
+        "DOM Manipulation and Events",
+        "Asynchronous Programming: Callbacks, Promises",
+        "ES6+ Features: Arrow Functions, Destructuring",
+        "Error Handling and Debugging",
+        "Modules and Package Management",
+        "Testing and Debugging JavaScript",
+        "Performance Optimization and Best Practices",
+        "Final Project: JavaScript Application"
+      ],
+      "duration": "30 Hours",
+      "price": "₹ 999"
+    }
+  }
+}
