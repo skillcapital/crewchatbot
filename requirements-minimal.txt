@@ -1,0 +1,3 @@
+# Minimal requirements for Vercel deployment
+# Only essential dependencies to avoid 250MB limit
+requests==2.31.0 
