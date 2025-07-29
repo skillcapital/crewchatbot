@@ -30,21 +30,39 @@ class handler(BaseHTTPRequestHandler):
             post_data = self.rfile.read(content_length)
             request_data = json.loads(post_data.decode('utf-8'))
             
-            # Extract the message from the request
-            user_message = request_data.get('message', '')
+            # Extract message from different possible formats
+            user_message = None
+            
+            # Check for different webhook formats
+            if 'message' in request_data:
+                user_message = request_data['message']
+            elif 'text' in request_data:
+                user_message = request_data['text']
+            elif 'content' in request_data:
+                user_message = request_data['content']
+            elif 'query' in request_data:
+                user_message = request_data['query']
+            elif 'user_message' in request_data:
+                user_message = request_data['user_message']
+            elif 'input' in request_data:
+                user_message = request_data['input']
             
             if not user_message:
                 response_data = {
                     'error': 'No message provided',
-                    'response': 'Please provide a message to chat with SkillCapital.'
+                    'response': 'Please provide a message in the request body.',
+                    'webhook_status': 'error'
                 }
             else:
-                # Get response from the chatbot
+                # Get response from the CrewAI chatbot
                 bot_response = get_chat_response(user_message)
                 
                 response_data = {
                     'response': bot_response,
-                    'status': 'success'
+                    'status': 'success',
+                    'webhook_status': 'success',
+                    'original_message': user_message,
+                    'timestamp': self.get_timestamp()
                 }
             
             # Send the response
@@ -53,7 +71,8 @@ class handler(BaseHTTPRequestHandler):
         except Exception as e:
             error_response = {
                 'error': str(e),
-                'response': 'Sorry, I encountered an error. Please try again.'
+                'response': 'Sorry, I encountered an error. Please try again.',
+                'webhook_status': 'error'
             }
             self.wfile.write(json.dumps(error_response).encode())
     
@@ -74,11 +93,24 @@ class handler(BaseHTTPRequestHandler):
         
         response_data = {
             'status': 'online',
-            'message': 'SkillCapital Chatbot API is running',
+            'message': 'SkillCapital CrewAI Webhook is running',
             'endpoints': {
-                'POST /api/chat': 'Send a message to chat with the bot',
-                'GET /api/chat': 'Health check'
-            }
+                'POST /api/webhook': 'Send a message to get CrewAI response',
+                'GET /api/webhook': 'Health check'
+            },
+            'supported_formats': [
+                '{"message": "your message"}',
+                '{"text": "your message"}',
+                '{"content": "your message"}',
+                '{"query": "your message"}',
+                '{"user_message": "your message"}',
+                '{"input": "your message"}'
+            ]
         }
         
-        self.wfile.write(json.dumps(response_data).encode()) 
+        self.wfile.write(json.dumps(response_data).encode())
+    
+    def get_timestamp(self):
+        """Get current timestamp"""
+        from datetime import datetime
+        return datetime.now().isoformat() 

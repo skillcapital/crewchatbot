@@ -1,0 +1,2 @@
+# Minimal requirements for simple chatbot
+# No heavy dependencies - just basic Python 
