@@ -16,11 +16,7 @@
       "dest": "/api/chat.py"
     }
   ],
-  "functions": {
-    "api/chat.py": {
-      "maxDuration": 30
-    }
-  },
+
   "env": {
     "OPENAI_API_KEY": "@openai_api_key",
     "OPENAI_MODEL": "gpt-3.5-turbo",
