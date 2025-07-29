@@ -167,8 +167,8 @@ except ImportError:
 # Create CrewAI Agents
 advisor_agent = Agent(
     role="SkillCapital Course Advisor",
-    goal="Provide accurate and helpful information about SkillCapital courses",
-    backstory="You are an expert course advisor at SkillCapital, a leading online learning platform. You have deep knowledge of all courses, pricing, and curriculum details. You provide concise, accurate, and friendly responses to help students make informed decisions.",
+    goal="Provide accurate and helpful information about SkillCapital courses, pricing, and enrollment",
+    backstory="You are an expert course advisor at SkillCapital, India's #1 Premium Training Platform. You have deep knowledge of all courses, pricing, curriculum details, and enrollment processes. You provide concise, accurate, and friendly responses to help students make informed decisions. You always mention SkillCapital's AI-driven platform and premium quality training.",
     verbose=False,
     allow_delegation=False,
     llm=llm
@@ -194,6 +194,16 @@ technical_agent = Agent(
     llm=llm
 )
 
+# Create Enrollment Agent for SkillCapital
+enrollment_agent = Agent(
+    role="SkillCapital Enrollment Specialist",
+    goal="Help students enroll in SkillCapital courses and provide enrollment guidance",
+    backstory="You are an enrollment specialist at SkillCapital, India's #1 Premium Training Platform. You help students understand the enrollment process, course benefits, and guide them through signing up. You're friendly, encouraging, and always emphasize the value of SkillCapital's AI-driven training platform.",
+    verbose=False,
+    allow_delegation=False,
+    llm=llm
+)
+
 def get_greeting_response(user_input: str) -> str:
     """Get greeting response"""
     user_input_clean = user_input.lower().strip()
@@ -203,15 +213,15 @@ def get_greeting_response(user_input: str) -> str:
         if greeting in user_input_clean:
             return response
     
-    return "Hello, how can I assist you?"
+    return "👋 Hi! Welcome to SkillCapital - India's #1 Premium Training Platform! How can I assist you today?"
 
 def get_price_response(user_input: str) -> str:
     """Get price information"""
-    return "₹ 999"
+    return "₹ 999 for premium AI-driven training"
 
 def get_duration_response(user_input: str) -> str:
     """Get duration information"""
-    return "30 Hours"
+    return "30 Hours of comprehensive training"
 
 def get_course_content(course_name: str) -> str:
     """Get specific course content"""
@@ -343,7 +353,7 @@ def get_crewai_response(user_input: str, agent_type: str = "advisor") -> str:
         if agent_type == "advisor":
             agent = advisor_agent
             task_description = f"Answer this SkillCapital related question: {cleaned_input}"
-            expected_output = "Provide a helpful and accurate response about SkillCapital courses, services, or information."
+            expected_output = "Provide a helpful and accurate response about SkillCapital courses, services, or information. Always mention SkillCapital's premium quality and AI-driven platform."
         elif agent_type == "research":
             agent = research_agent
             task_description = f"Research and answer this question: {cleaned_input}"
@@ -352,6 +362,10 @@ def get_crewai_response(user_input: str, agent_type: str = "advisor") -> str:
             agent = technical_agent
             task_description = f"Explain this technical concept: {cleaned_input}"
             expected_output = "Provide a clear technical explanation with practical examples."
+        elif agent_type == "enrollment":
+            agent = enrollment_agent
+            task_description = f"Help with enrollment: {cleaned_input}"
+            expected_output = "Provide helpful enrollment guidance and encourage course signup at SkillCapital."
         else:
             agent = advisor_agent
             task_description = f"Answer this question: {cleaned_input}"
@@ -496,14 +510,20 @@ def get_chat_response(user_input: str) -> str:
         # Determine the type of query and use appropriate CrewAI agent
         technical_keywords = ['programming', 'code', 'development', 'software', 'algorithm', 'database', 'api', 'framework', 'python', 'javascript', 'react', 'aws', 'azure']
         research_keywords = ['what is', 'what are', 'how does', 'explain', 'tell me about', 'define', 'describe', 'research']
+        enrollment_keywords = ['enroll', 'sign up', 'register', 'join', 'start course', 'how to join', 'enrollment', 'admission']
         
         is_technical = any(keyword in user_input_lower for keyword in technical_keywords)
         is_research = any(keyword in user_input_lower for keyword in research_keywords)
+        is_enrollment = any(keyword in user_input_lower for keyword in enrollment_keywords)
         is_skillcapital = is_skillcapital_related(user_input)
         
         # Use CrewAI for different types of queries
         try:
-            if is_skillcapital:
+            if is_enrollment:
+                # Use enrollment agent for enrollment queries
+                response = get_crewai_response(user_input, "enrollment")
+                return response
+            elif is_skillcapital:
                 # Use advisor agent for SkillCapital queries
                 response = get_crewai_response(user_input, "advisor")
                 return response
