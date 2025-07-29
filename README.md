@@ -1,184 +1,153 @@
-# CrewAI Chatbot for SkillCapital
+# SkillCapital CrewAI Chatbot
 
-A smart chatbot built with CrewAI framework that provides information about SkillCapital courses, pricing, and curriculum details.
+A sophisticated AI-powered chatbot built with CrewAI that provides information about SkillCapital courses, technical guidance, and general assistance.
 
-## 🚀 Quick Start
+## Features
 
-### 1. Install Dependencies
-```bash
-# Option 1: Use the installation script
-python install_requirements.py
+- **Multi-Agent System**: Uses specialized agents for different types of queries
+  - Course Advisor Agent: Handles SkillCapital course inquiries
+  - Research Agent: Provides general information and research
+  - Technical Expert Agent: Offers programming and technical guidance
+- **Course Information**: Detailed curriculum and pricing for SkillCapital courses
+- **Real-time Responses**: Powered by OpenAI's GPT models
+- **Web API**: RESTful API for integration with web applications
+- **Auto-reload**: Configuration hot-reloading during development
 
-# Option 2: Install manually
-pip install -r requirements.txt
+## Project Structure
+
 ```
-
-### 2. Set Up API Key
-Create `.env/api_key.txt` file and add your OpenAI API key:
-```
-sk-your-api-key-here
-```
-
-### 3. Run the Chatbot
-```bash
-# Option 1: Use the run script
-python run_chatbot.py
-
-# Option 2: Run directly
-python src/chatbot/chatbot.py
-
-# Option 3: Simple chat interface
-python src/chatbot/simple_chat.py
-
-# Option 4: Demo mode
-python src/chatbot/simple_chat_demo.py
-```
-
-## 📁 Project Structure
-```
-crewai chatbot/
-├── .env/
-│   └── api_key.txt          # OpenAI API key
+crewai-chatbot/
+├── api/                    # Vercel deployment files
+│   ├── chat.py            # API endpoint handler
+│   └── requirements.txt   # API dependencies
 ├── src/
 │   ├── chatbot/
-│   │   ├── chatbot.py       # Main chatbot with CrewAI
-│   │   ├── simple_chat.py   # Simple chat interface
-│   │   ├── simple_chat_demo.py # Demo mode
-│   │   └── auto_reload.py   # Live code updates
+│   │   └── chatbot.py     # Main chatbot logic
 │   └── website_data/
-│       └── course_curriculum.json # Course data
-├── config.py                # Configuration settings
-├── requirements.txt         # Dependencies
-├── install_requirements.py  # Installation script
-├── run_chatbot.py          # Easy run script
-└── README.md               # This file
+│       └── course_curriculum.json  # Course data
+├── config.py              # Configuration (uses env vars)
+├── requirements.txt       # Main dependencies
+├── vercel.json           # Vercel deployment config
+└── README.md
 ```
 
-## 🎯 Features
+## Setup Instructions
 
-### ✅ **Smart Course Detection**
-- **React.js**: Detects `react`, `reactjs`, `react js`, `javascript`, `js`
-- **AWS**: Detects `aws`, `amazon`, `cloud`
-- **Azure**: Detects `azure`, `microsoft`
-- **Python**: Detects `python`, `programming`
-- **DevOps**: Detects `devops`, `development operations`
+### Local Development
 
-### ✅ **Structured Responses**
-- **Price Queries**: Only shows price (no duration)
-- **Duration Queries**: Only shows duration (no price)
-- **Course Content**: Shows course name and modules only
-- **Greetings**: Concise "Hello, how can I assist you?"
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd crewai-chatbot
+   ```
 
-### ✅ **Dual AI System**
-- **CrewAI**: For SkillCapital-related queries
-- **ChatGPT**: For general questions (smart, human-like responses)
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### ✅ **Live Updates**
-- **Auto-reload**: Code changes automatically restart the chatbot
-- **Live website data**: Fetches real-time information from SkillCapital
+3. **Set up environment variables**
+   Create a `.env` file in the root directory:
+   ```env
+   OPENAI_API_KEY=your_openai_api_key_here
+   OPENAI_MODEL=gpt-3.5-turbo
+   OPENAI_TEMPERATURE=0.7
+   ```
 
-## 🔧 Configuration
+4. **Run the chatbot**
+   ```bash
+   python src/chatbot/chatbot.py
+   ```
 
-### API Key Setup
-1. Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com/)
-2. Create `.env/api_key.txt` file
-3. Add your API key: `sk-your-key-here`
+### Vercel Deployment
 
-### Environment Variables
-```python
-# config.py
-OPEN_API_KEY = "your-api-key"
-OPENAI_MODEL = "gpt-3.5-turbo"
-OPENAI_TEMPERATURE = 0.7
-CHATBOT_NAME = "SkillCapital CrewAI Chatbot"
+1. **Install Vercel CLI**
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Login to Vercel**
+   ```bash
+   vercel login
+   ```
+
+3. **Set environment variables in Vercel**
+   ```bash
+   vercel env add OPENAI_API_KEY
+   # Enter your OpenAI API key when prompted
+   ```
+
+4. **Deploy to Vercel**
+   ```bash
+   vercel --prod
+   ```
+
+## API Usage
+
+### Endpoint: `/api/chat`
+
+**Method:** POST
+
+**Headers:**
+```
+Content-Type: application/json
 ```
 
-## 📋 Usage Examples
-
-### Course Information
-```
-You: reactjs course content
-Bot: Course: React JS
-     Modules:
-     • Introduction to React and Modern JavaScript
-     • JSX and React Components
-     • State and Props Management
-     ...
-
-You: aws cloud modules
-Bot: Course: AWS Cloud
-     Modules:
-     • Introduction to Cloud Computing and AWS
-     • AWS Fundamentals and Core Services
-     ...
+**Request Body:**
+```json
+{
+  "message": "What courses do you offer?"
+}
 ```
 
-### Pricing & Duration
-```
-You: course price
-Bot: All courses are priced at ₹ 999 for 30 hours of comprehensive training.
-
-You: duration
-Bot: Duration: 30 Hours
-```
-
-### General Questions
-```
-You: What is machine learning?
-Bot: [Smart ChatGPT response about machine learning]
+**Response:**
+```json
+{
+  "response": "We offer various courses including Python, DevOps, AWS, Azure, React.js, and more...",
+  "status": "success"
+}
 ```
 
-## 🛠️ Development
+## Environment Variables
 
-### Auto-reload Development Mode
-```bash
-python src/chatbot/auto_reload.py
-```
-This will automatically restart the chatbot when you make code changes.
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `OPENAI_API_KEY` | Your OpenAI API key | Required |
+| `OPENAI_MODEL` | OpenAI model to use | `gpt-3.5-turbo` |
+| `OPENAI_TEMPERATURE` | Response creativity (0-1) | `0.7` |
 
-### Testing
-```bash
-python test_chatbot.py
-```
+## Security Notes
 
-## 📦 Dependencies
+- API keys are stored as environment variables, not in code
+- The `.gitignore` file excludes sensitive files
+- Never commit API keys or secrets to version control
 
-### Core AI
-- `crewai>=0.148.0` - AI framework
-- `langchain>=0.1.0` - Language model integration
-- `langchain-openai>=0.3.28` - OpenAI integration
-- `openai>=1.93.3` - OpenAI API client
+## Available Courses
 
-### Web Scraping
-- `requests>=2.31.0` - HTTP requests
-- `beautifulsoup4>=4.12.2` - HTML parsing
-- `lxml>=4.9.3` - XML/HTML parser
+The chatbot can provide information about:
+- Python Programming
+- DevOps Engineering
+- AWS Cloud Computing
+- Microsoft Azure
+- React.js Development
+- UI/UX Design
+- HTML & CSS
+- Terraform Infrastructure
+- Kubernetes
+- Site Reliability Engineering (SRE)
 
-### Monitoring
-- `watchdog>=3.0.0` - File system monitoring
+## Contributing
 
-### Search Tools
-- `duckduckgo-search>=4.1.1` - Web search
-- `tavily-python>=0.3.1` - AI-powered search
-- `wikipedia>=1.4.0` - Wikipedia search
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-## 🚨 Troubleshooting
+## License
 
-### Common Issues
+This project is licensed under the MIT License.
 
-1. **Import Error**: Run `python install_requirements.py`
-2. **API Key Error**: Check `.env/api_key.txt` file
-3. **Module Not Found**: Ensure you're in the project root directory
+## Support
 
-### Error Messages
-- `AuthenticationError`: Check your OpenAI API key
-- `FileNotFoundError`: Check file paths and structure
-- `ImportError`: Install missing dependencies
-
-## 📝 License
-
-This project is for educational purposes. Please respect OpenAI's usage policies.
-
----
-
-**Happy Learning! 🎓**
+For support or questions, please open an issue in the GitHub repository.

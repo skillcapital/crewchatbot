@@ -84,7 +84,9 @@ def load_course_data() -> Dict[str, Any]:
 api_key = OPEN_API_KEY
 
 if not api_key:
-    raise ValueError("OpenAI API key not found. Please check your .env/api_key.txt file.")
+    print("Warning: No OpenAI API key found. The chatbot will run in limited mode.")
+    print("To enable full functionality, please set OPENAI_API_KEY environment variable or create .env/api_key.txt file.")
+    api_key = "dummy-key"  # Use dummy key for fallback mode
 
 # Set environment variable for CrewAI compatibility
 os.environ['OPENAI_API_KEY'] = api_key
@@ -242,7 +244,61 @@ def get_course_content(course_name: str) -> str:
         if 'react js' in courses:
             return format_course_content(courses['react js'])
     
-    # Handle other courses
+    # Handle UI/UX variations
+    if any(word in course_name_lower for word in ['ui', 'ux', 'ui/ux', 'design', 'user interface', 'user experience']):
+        for key, course in courses.items():
+            if 'ui/ux' in key or 'ui' in key or 'ux' in key:
+                return format_course_content(course)
+        
+        # Special handling for "ui/ux" course
+        if 'ui/ux' in courses:
+            return format_course_content(courses['ui/ux'])
+    
+    # Handle HTML & CSS variations
+    if any(word in course_name_lower for word in ['html', 'css', 'html & css', 'web development']):
+        for key, course in courses.items():
+            if 'html' in key or 'css' in key:
+                return format_course_content(course)
+        
+        # Special handling for "html & css" course
+        if 'html & css' in courses:
+            return format_course_content(courses['html & css'])
+    
+    # Handle Terraform variations
+    if any(word in course_name_lower for word in ['terraform', 'iac', 'infrastructure']):
+        for key, course in courses.items():
+            if 'terraform' in key:
+                return format_course_content(course)
+    
+    # Handle Kubernetes variations
+    if any(word in course_name_lower for word in ['kubernetes', 'k8s', 'container']):
+        for key, course in courses.items():
+            if 'kubernetes' in key:
+                return format_course_content(course)
+    
+    # Handle Python variations
+    if any(word in course_name_lower for word in ['python', 'programming']):
+        for key, course in courses.items():
+            if 'python' in key:
+                return format_course_content(course)
+    
+    # Handle DevOps variations
+    if any(word in course_name_lower for word in ['devops', 'ci/cd', 'deployment']):
+        for key, course in courses.items():
+            if 'devops' in key:
+                return format_course_content(course)
+    
+    # Handle SRE variations
+    if any(word in course_name_lower for word in ['sre', 'site reliability', 'reliability engineering']):
+        for key, course in courses.items():
+            if 'sre' in key or 'site reliability' in key:
+                return format_course_content(course)
+        
+        # Special handling for "site reliability engineer (sre)" course
+        if 'site reliability engineer (sre)' in courses:
+            return format_course_content(courses['site reliability engineer (sre)'])
+    
+    # Handle other courses with exact matching
     for key, course in courses.items():
         if course_name_lower in key or key in course_name_lower:
             return format_course_content(course)
@@ -326,8 +382,8 @@ def is_skillcapital_related(user_input: str) -> bool:
         'skillcapital', 'course', 'courses', 'training', 'learning', 'education',
         'python', 'devops', 'aws', 'amazon', 'azure', 'microsoft', 'cloud',
         'react', 'reactjs', 'react js', 'react.js', 'javascript', 'js', 'html', 'css', 
-        'terraform', 'kubernetes', 'sre', 'ui/ux', 'price', 'cost', 'duration', 
-        'curriculum', 'modules', 'enroll', 'enrollment', 'certificate'
+        'terraform', 'kubernetes', 'sre', 'site reliability', 'reliability engineering', 'ui/ux', 'ui', 'ux', 'design', 'user interface', 'user experience',
+        'price', 'cost', 'duration', 'curriculum', 'modules', 'enroll', 'enrollment', 'certificate'
     ]
     
     user_input_lower = user_input.lower().strip()
@@ -637,6 +693,88 @@ def run_chatbot():
                             # Special handling for "react js" course
                             if 'react js' in courses:
                                 safe_print(f"SkillCapital: {get_course_content('react js')}")
+                            else:
+                                safe_print(f"SkillCapital: {get_all_courses()}")
+                        continue
+                    
+                    # Check for UI/UX variations
+                    if any(word in user_input_lower for word in ['ui', 'ux', 'ui/ux', 'design', 'user interface', 'user experience']):
+                        for key, course in courses.items():
+                            if 'ui/ux' in key or 'ui' in key or 'ux' in key:
+                                safe_print(f"SkillCapital: {get_course_content(key)}")
+                                break
+                        else:
+                            # Special handling for "ui/ux" course
+                            if 'ui/ux' in courses:
+                                safe_print(f"SkillCapital: {get_course_content('ui/ux')}")
+                            else:
+                                safe_print(f"SkillCapital: {get_all_courses()}")
+                        continue
+                    
+                    # Check for HTML & CSS variations
+                    if any(word in user_input_lower for word in ['html', 'css', 'html & css', 'web development']):
+                        for key, course in courses.items():
+                            if 'html' in key or 'css' in key:
+                                safe_print(f"SkillCapital: {get_course_content(key)}")
+                                break
+                        else:
+                            # Special handling for "html & css" course
+                            if 'html & css' in courses:
+                                safe_print(f"SkillCapital: {get_course_content('html & css')}")
+                            else:
+                                safe_print(f"SkillCapital: {get_all_courses()}")
+                        continue
+                    
+                    # Check for Terraform variations
+                    if any(word in user_input_lower for word in ['terraform', 'iac', 'infrastructure']):
+                        for key, course in courses.items():
+                            if 'terraform' in key:
+                                safe_print(f"SkillCapital: {get_course_content(key)}")
+                                break
+                        else:
+                            safe_print(f"SkillCapital: {get_all_courses()}")
+                        continue
+                    
+                    # Check for Kubernetes variations
+                    if any(word in user_input_lower for word in ['kubernetes', 'k8s', 'container']):
+                        for key, course in courses.items():
+                            if 'kubernetes' in key:
+                                safe_print(f"SkillCapital: {get_course_content(key)}")
+                                break
+                        else:
+                            safe_print(f"SkillCapital: {get_all_courses()}")
+                        continue
+                    
+                    # Check for Python variations
+                    if any(word in user_input_lower for word in ['python', 'programming']):
+                        for key, course in courses.items():
+                            if 'python' in key:
+                                safe_print(f"SkillCapital: {get_course_content(key)}")
+                                break
+                        else:
+                            safe_print(f"SkillCapital: {get_all_courses()}")
+                        continue
+                    
+                    # Check for DevOps variations
+                    if any(word in user_input_lower for word in ['devops', 'ci/cd', 'deployment']):
+                        for key, course in courses.items():
+                            if 'devops' in key:
+                                safe_print(f"SkillCapital: {get_course_content(key)}")
+                                break
+                        else:
+                            safe_print(f"SkillCapital: {get_all_courses()}")
+                        continue
+                    
+                    # Check for SRE variations
+                    if any(word in user_input_lower for word in ['sre', 'site reliability', 'reliability engineering']):
+                        for key, course in courses.items():
+                            if 'sre' in key or 'site reliability' in key:
+                                safe_print(f"SkillCapital: {get_course_content(key)}")
+                                break
+                        else:
+                            # Special handling for "site reliability engineer (sre)" course
+                            if 'site reliability engineer (sre)' in courses:
+                                safe_print(f"SkillCapital: {get_course_content('site reliability engineer (sre)')}")
                             else:
                                 safe_print(f"SkillCapital: {get_all_courses()}")
                         continue

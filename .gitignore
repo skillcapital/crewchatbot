@@ -1,8 +1,10 @@
-# Environment variables and API keys
-.env/
-*.env
+# Environment variables and secrets
+.env
+.env.local
+.env.production
+.env.development
 api_key.txt
-*.key
+secrets.json
 
 # Python
 __pycache__/
@@ -25,25 +27,52 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # Virtual environments
+.venv/
 venv/
-env/
 ENV/
+env/
+.venv.bak/
+venv.bak/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
 # Logs
 *.log
+logs/
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp
+temp/
+tmp/
+
+# API keys and sensitive data
+config_secrets.py
+secrets.py
+api_keys.py
+
+# Node modules (if any frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vercel
+.vercel 

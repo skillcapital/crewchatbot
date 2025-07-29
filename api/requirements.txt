@@ -1,0 +1,33 @@
+# Core AI and Language Model Dependencies
+crewai>=0.148.0
+langchain>=0.1.0
+langchain-openai>=0.3.28
+openai>=1.93.3
+
+# Environment and Configuration
+python-dotenv>=1.0.0
+
+# Web Scraping and HTTP Requests
+requests>=2.31.0
+beautifulsoup4>=4.12.2
+lxml>=4.9.3
+
+# File System Monitoring (for auto-reload)
+watchdog>=3.0.0
+
+# Search and Research Tools
+duckduckgo-search>=4.1.1
+tavily-python>=0.3.1
+wikipedia>=1.4.0
+
+# Additional Search Tools
+google>=3.0.0
+google-search-results>=2.4.2
+
+# Web Scraping Tools
+browserless>=1.5.6
+scraper>=1.2.0
+
+# Optional: Video and Social Media Search
+youtube-search>=0.1.0
+tiktok-api>=0.0.1 
